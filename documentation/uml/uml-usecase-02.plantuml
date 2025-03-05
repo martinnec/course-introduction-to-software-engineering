@@ -1,0 +1,16 @@
+@startuml
+top to bottom direction
+actor "Traveler" as AC_T
+rectangle "ExploreLocal - Searching and Booking Activities" {
+    usecase UC_SAI as "Search Activities by Itinerary
+    --
+    Extension points:
+      activity action selection"
+    usecase UC_RA as "Recommend Activities\n--\nExtension points:\n  activity action selection"
+    usecase "Book Activity" as UC_BA
+}
+UC_BA .u.> UC_SAI : "<<extend>>\lCondition:{user selected BOOK on found activity}\lExtension point: activity action selection"
+UC_BA .u.> UC_RA : "<<extend>>\lCondition:{user selected BOOK on recommended activity}\lExtension point: activity action selection"
+AC_T -r-> UC_SAI
+AC_T -r-> UC_RA
+@enduml

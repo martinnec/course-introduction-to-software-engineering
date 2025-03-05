@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+actor "Traveler" as AC_T
+actor "Guide" as AC_G
+rectangle "ExploreLocal - Managing Bookings" {
+    usecase "Manage My Bookings" as UC_MMB
+    usecase "Pay for Booking" as UC_PB
+    usecase "Talk to Guide" as UC_TG
+}
+UC_PB .l.> UC_MMB : <<extend>>
+AC_T --> UC_MMB
+AC_T --> UC_PB
+AC_T --> UC_TG
+AC_G -u-> UC_TG
+@enduml
