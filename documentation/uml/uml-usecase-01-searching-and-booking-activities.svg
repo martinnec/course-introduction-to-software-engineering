@@ -5,7 +5,7 @@
     width="609px" zoomAndPan="magnify">
     <style>
     :target ellipse {
-      fill: red !important ;
+      fill: #00c3ff !important ;
     }
     </style>
     <defs />
