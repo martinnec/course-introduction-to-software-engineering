@@ -4,8 +4,8 @@
     style="width:609px;height:286px;background:#FFFFFF;" version="1.1" viewBox="0 0 609 286"
     width="609px" zoomAndPan="magnify">
     <style>
-    :target {
-      fill: red;
+    :target.ellipse {
+      fill: red !important ;
     }
     </style>
     <defs />
