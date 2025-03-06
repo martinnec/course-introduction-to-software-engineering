@@ -8,3 +8,5 @@ assignees: ''
 ---
 
 As a [WHO], I need to [WHAT] so that [WHY].
+
+Related: #[id of a related user story]
