@@ -9,4 +9,4 @@ assignees: ''
 
 As a [WHO], I need to [WHAT] so that [WHY].
 
-Related: #[id of a related user story]
+Depends on: #[id of a user story this user story depends on]
