@@ -2,7 +2,7 @@
 name: Use Case Template
 about: Use this template to describe a functional requirement as a use case.
 title: 'UC-NNN: Use case title based on WHAT'
-labels: use case, user story
+labels: use case
 assignees: ''
 
 ---
