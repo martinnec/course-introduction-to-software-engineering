@@ -7,6 +7,8 @@ assignees: ''
 
 ---
 
+_inherits from_ use case (Use only when the use case inherits from another use case or use cases.)
+
 ## Actors
 
 [list actors here]
