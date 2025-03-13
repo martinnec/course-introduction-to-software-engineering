@@ -1,0 +1,16 @@
+@startuml
+hide empty description
+state "Listing Itineraries" as ListingItineraries
+state "Creating Itinerary" as CreatingItinerary
+state "Displaying itinerary" as DisplayingItinerary
+state "Editing time slots" as EditingTimeSlots
+
+
+[*] -r-> ListingItineraries
+ListingItineraries -d-> CreatingItinerary : needed\nnot found
+ListingItineraries -r-> DisplayingItinerary : existing chosen
+CreatingItinerary -u-> DisplayingItinerary : created
+DisplayingItinerary -r-> EditingTimeSlots : change in\ntime slots\required
+DisplayingItinerary -d-> [*] : itinerary\nready
+EditingTimeSlots -d-> [*] : itinerary\nready
+@enduml
