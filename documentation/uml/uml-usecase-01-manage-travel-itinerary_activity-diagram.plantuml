@@ -1,0 +1,108 @@
+@startuml
+start
+:Traveler navigates to Manage Travel Itineraries;
+:System shows existing itineraries;
+if (Traveler found desired itinerary?) then (yes)
+    :Traveler selects existing itinerary;
+else (no)
+    :Traveler chooses 'Create new itinerary';
+    :System creates new empty itinerary;
+endif
+:System displays details of selected/new itinerary I;
+repeat
+    if (Traveler wants to change the name of I?) then (yes)
+        :Traveler inputs a new name of I;
+        :System changes the name of I;
+    else (no)
+    endif
+    if (Traveler wants to define area of I?) then (yes)
+        :System shows a searchable world map;
+        :Traveler chooses an area on the map;
+        :System assigns the area to I;
+    else (no)
+    endif
+    partition "Manage time slots"   {
+        label manage_time_slots
+        repeat
+            switch (Edit time slots?) 
+            case ( add )
+                :Traveler chooses where to add new time slot T;
+                :Traveler inputs from/to date and time of T;
+                :Traveler inputs the name of T;
+                :System creates T on the chosen place of I;
+            case ( remove )
+                :Traveler chooses time slot T to be removed;
+                if (T has places assigned?) then (yes)
+                    :System warns about places assigned to T;
+                    if (Confirms removal?) then (yes)
+                        :System removes time slot;
+                    else (no)
+                    endif
+                else (no)
+                    :System removes time slot; 
+                endif
+            case ( edit places )
+            endswitch
+            partition "Manage places"   {
+                label manage_places
+                repeat
+                    switch (Edit places in time slot T?)
+                    case ( add )
+                        if (Area defined?) then (no)
+                            :System shows a searchable world map;
+                            :Traveler chooses an area on the map;
+                            :System assigns the area to I;
+                        endif
+                        if (T contains some places OR surrounding slots contain some places) then (yes)
+                            if (T contains some places) then (yes)
+                                :System suggests in T one additional\nclose place P;
+                            elseif (T does not contain places but surrounding slots do) then (yes)
+                                :System suggests in T one additional\nplace P close to the surrounding places;
+                            endif
+                            if(Traveler chooses P?) then (yes)
+                                :System adds P into T;
+                            else (no)
+                            endif
+                        else (no)
+                        endif
+                        if (Traveler wants to add place manually) then (yes)
+                            :Traveler enters place name;
+                            if (Place known and in the defined area?) then (no)
+                                :System shows places with\nmost similar names in\nthe defined area;
+                                :Traveler chooses place P;
+                            else (yes)
+                                :System holds the place as P;
+                            endif
+                            :System adds P to T;
+                        endif
+                    case ( remove )
+                        :Traveler chooses place on T\nto be removed;
+                        :System removes place from T; 
+                    case ( move )
+                        :Traveler chooses place on T\nto be moved to another\ntime slot T';
+                        :System moves place to T'; 
+                    endswitch
+                repeat while (Continue editing places?)
+            }
+        repeat while (Continue editing time slots?)
+    }
+    :System validates itinerary;
+    if (Itinerary missing name?) then (yes)
+        :System warns traveler to define itinerary name;
+        :System sets I as invalid;
+    elseif (No time slots defined?) then (yes)
+        :System warns traveler to add time slots;
+        :System sets I as invalid;
+    elseif (Time slots have gaps?) then (yes)
+        :System warns traveler about a gap;
+        :System sets I as invalid;
+    elseif (Empty time slot detected?) then (yes)
+        :System warns traveler about empty time slot;
+        :System sets I as invalid;
+    else (no)
+        :System sets I as valid;
+    endif
+repeat while (Itinerary is valid?) is (no) not (yes)
+:System displays prepared itinerary;
+stop
+@enduml
