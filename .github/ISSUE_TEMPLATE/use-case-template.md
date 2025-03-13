@@ -38,3 +38,10 @@ Na. [specify an alternative to step N]
 ## Postconditions
 
 - [list postconditions here]
+
+## Activity Diagrams (optional for complex use case flows)
+
+![image](link an activity diagram SVG file)
+_(see the [source](link the the diagram source PlantUML file))_
+
+## Wireframes (optional for complex UX flow)
