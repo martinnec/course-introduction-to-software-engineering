@@ -42,6 +42,11 @@ Na. [specify an alternative to step N]
 ## Activity Diagrams (optional for complex use case flows)
 
 ![image](link an activity diagram SVG file)
-_(see the [source](link the the diagram source PlantUML file))_
+_(see the [source](link the diagram source PlantUML file))_
 
 ## Wireframes (optional for complex UX flow)
+
+## State Machine Diagrams (optional for complex use case flows)
+
+![image](link a state machine diagram SVG file)
+_(see the [source](link the diagram source PlantUML file))_
