@@ -82,9 +82,9 @@ repeat
                         :Traveler chooses place on T\nto be moved to another\ntime slot T';
                         :System moves place to T'; 
                     endswitch
-                repeat while (Continue editing places?)
+                repeat while (Continue editing places?) is (yes) not (no)
             }
-        repeat while (Continue editing time slots?)
+        repeat while (Continue editing time slots?) is (yes) not (no)
     }
     :System validates itinerary;
     if (Itinerary missing name?) then (yes)
