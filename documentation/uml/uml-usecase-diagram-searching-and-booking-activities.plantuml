@@ -1,16 +1,24 @@
 @startuml
 left to right direction
 actor "Traveler" as AC_T
+actor "Family Traveler" as AC_FT
 rectangle "ExploreLocal - Searching and Booking Activities" {
     usecase "Manage Travel Itinerary" as UC_MTI
     usecase "Search Activities by Itinerary" as UC_SAI
     usecase "Recommend Activities" as UC_RA
+    usecase "Recommend Family Activities" as UC_RFA
     usecase "Book Activity" as UC_BA
+    usecase "Filter Activities" AS UC_FA
 }
 UC_SAI .l.> UC_MTI : <<include>>
 UC_BA .u.> UC_SAI : <<extend>>
 UC_BA .u.> UC_RA : <<extend>>
+UC_SAI .l.> UC_FA : <<include>>
+UC_RA .r.> UC_FA : <<include>>
+UC_RFA -r-|> UC_RA
 AC_T --> UC_MTI
 AC_T --> UC_SAI
 AC_T --> UC_RA
+AC_FT -u-|> AC_T
+AC_FT --> UC_RFA
 @enduml
