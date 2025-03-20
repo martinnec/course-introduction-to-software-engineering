@@ -1,0 +1,64 @@
+@startuml
+
+class Person {
+  given name
+  email address
+}
+
+class Traveler {
+  travel preference : String[0..*]
+}
+
+class "Local Guide" as LocalGuide {
+  guide expertise
+}
+
+class "Travel Itinerary" as TravelItinerary {
+  itinerary name
+}
+
+class "Time Slot" as TimeSlot {
+  planned arrival
+  planned departure
+}
+
+class Location {
+}
+
+class Activity {
+  activity name
+  activity itinerary : Activity Itinerary
+  difficulty level
+}
+
+class "Activity Itinerary" as ActivityItinerary {
+  activity duration
+  activity description
+}
+
+class "Activity Booking" as ActivityBooking {
+  scheduled date
+  booking date
+  cancellation deadline
+}
+
+Traveler -r-|> Person
+LocalGuide -r-|> Person
+
+Traveler "0..*" --> "0..*" Activity : booked activity
+(Traveler, Activity) .l. ActivityBooking
+
+Activity "0..*" -u-> "1" Location : located at
+Traveler "0..*" --> "0..*" Location : plans to visit
+
+(Traveler, Location) .. TimeSlot
+
+Traveler "1" -u-> "0..*" TravelItinerary : owns itinerary
+Traveler "0..*" -u-> "0..*" TravelItinerary : can access itinerary
+
+TravelItinerary "0..1" *-l-> "0..*" TimeSlot : contains time slot
+
+ActivityBooking "0..*" --> "1..*" LocalGuide : has booked guide
+LocalGuide "1..*" --> "1..*" Activity : offers activity
+
+@enduml
